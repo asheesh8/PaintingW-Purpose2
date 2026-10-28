@@ -232,7 +232,7 @@ def num(i):
 
 def build_index(pairs):
     sel = [PROJECTS[0], PROJECTS[2], PROJECTS[3], PROJECTS[4], PROJECTS[6], PROJECTS[5]]
-    layout = ["w-7", "w-5 tall", "w-5", "w-7", "w-6 tall", "w-6"]
+    layout = ["w-7", "w-5 tall", "w-5", "w-7", "w-6 tall", "w-6 tall"]
     imgs = {"lake-cottage": "dsc-0686", "library": "dsc-0995", "built-ins": "dsc-1094"}
     tiles = []
     for i, (p, lay) in enumerate(zip(sel, layout), 1):
