@@ -123,6 +123,10 @@
     window.addEventListener("scroll", function () { requestAnimationFrame(media); }, { passive: true });
     setInterval(media, 600);
     media();
+    // some phones (low power mode) block autoplay until the first touch: retry then
+    ["touchstart", "click", "keydown"].forEach(function (ev) {
+      window.addEventListener(ev, function () { clips.forEach(function (v) { }); media(); }, { once: true, passive: true });
+    });
   }
 
   // reveals
