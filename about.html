@@ -3,24 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Purpose | Painting With Purpose</title>
-<meta name="description" content="Painting With Purpose is a Greater Burlington painting company working to help end homelessness in Vermont.">
+<title>Purpose · Painting With Purpose</title>
+<meta name="description" content="How part of every job goes to CVOEO to help Vermonters move from shelter into a home.">
 <meta name="theme-color" content="#0b151c">
-<meta property="og:title" content="Purpose | Painting With Purpose">
-<meta property="og:description" content="Painting With Purpose is a Greater Burlington painting company working to help end homelessness in Vermont.">
-<meta property="og:image" content="assets/photos/dsc-0058-lg.jpg">
+<meta property="og:title" content="Purpose · Painting With Purpose">
+<meta property="og:description" content="How part of every job goes to CVOEO to help Vermonters move from shelter into a home.">
+<meta property="og:image" content="assets/photos/dsc-0179-lg.jpg">
 <meta property="og:type" content="website">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter+Tight:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/cine.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter+Tight:wght@400;500&display=swap">
+<link rel="preload" href="assets/logo.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body data-page="about">
 <a class="skip" href="#main">Skip to content</a>
-<header class="hdr">
-  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><img src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402"></a>
+<header class="hdr is-dark">
+  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><span class="logo " aria-hidden="true"></span></a>
   <nav class="hdr__nav" id="nav" aria-label="Main">
     <ul><li><a href="work.html">work</a></li><li><a href="services.html">services</a></li><li><a href="about.html" aria-current="page">purpose</a></li><li><a href="careers.html">careers</a></li></ul>
     <a class="hdr__cta" href="estimate.html">free estimate</a>
@@ -28,61 +30,69 @@
   <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="nav"><span>menu</span></button>
 </header>
 <main id="main">
-<section class="ptitle wrap">
-  <p class="label">(purpose)</p>
-  <h1>good work should do good</h1>
-  <p class="ptitle__lede">A Greater Burlington painting company with one big goal: helping end homelessness in Vermont.</p>
+<section class="phero phero--vic">
+  <video class="clip" muted loop playsinline preload="auto" poster="assets/video/victorian.jpg" aria-label="A Queen Anne Victorian on a quiet street, a neighbor walking a dog past"><source src="assets/video/victorian-720.mp4" type="video/mp4" media="(max-width: 900px)"><source src="assets/video/victorian.mp4" type="video/mp4"></video>
+  <div class="phero__txt">
+    <p class="label">(purpose)</p>
+    <h1>good work should do good</h1>
+    <p class="phero__lede">A Greater Burlington painting company with one larger goal: helping end homelessness in Vermont.</p>
+  </div>
+  <p class="label phero__cap">Queen Anne Victorian · Burlington</p>
 </section>
 
-<figure class="vband vband--vic"><video class="clip" muted loop playsinline preload="none" poster="assets/video/victorian.jpg" aria-label="A Queen Anne Victorian on a quiet street, a neighbor walking a dog past"><source src="assets/video/victorian-720.mp4" type="video/mp4" media="(max-width: 900px)"><source src="assets/video/victorian.mp4" type="video/mp4"></video><figcaption class="label">Queen Anne Victorian · Burlington</figcaption></figure>
-<section class="split wrap">
+<section class="sec wrap story">
   <p class="label">(story)</p>
-  <div class="split__txt">
-    <p class="big">Painting is honest work. You can see it from the street. We wanted the why behind it to be just as visible.</p>
-    <p>Painting With Purpose started with a crew, a van and a promise: do excellent work for our neighbors, and use the business to help the neighbors who don’t have a home at all.</p>
-    <p>More than a hundred jobs later, that promise still sets how we work. We show up on time with everything we need, protect your home, clean up daily and talk you through each step. Along the way we were honored with the Joy and Jerry Meyers Cup.</p>
+  <div class="story__txt">
+    <p class="story__big">Painting is honest work. You can see it from the street. We wanted the reason behind it to be just as easy to see.</p>
+    <div class="story__cols">
+      <p>Painting With Purpose opened in February 2022 with a simple idea: do excellent work for our neighbors, and use the business to help the neighbors who have no home at all.</p>
+      <p>The plan took first place at the Joy and Jerry Meyers Cup at UVM. More than a hundred jobs later, it still sets how we work. On time, fully equipped, your home protected, and the site cleaned every day.</p>
+    </div>
   </div>
 </section>
-<section class="purpose" aria-labelledby="cvoeo-h">
-  <div class="wrap purpose__in">
-    <div class="purpose__txt">
+<section class="band" aria-labelledby="cvoeo-h">
+  <div class="wrap band__in">
+    <div>
       <p class="label">(cvoeo)</p>
       <h2 id="cvoeo-h">part of every job goes to housing.</h2>
-      <p>The Champlain Valley Office of Economic Opportunity helps Vermonters find and keep safe, stable housing. When you hire us, a share of what you pay goes to that work, at no extra cost to you.</p>
-      <ol class="flow"><li>You book a job</li><li>We do it right</li><li>A share goes to CVOEO</li><li>A neighbor finds a home</li></ol>
+      <p>CVOEO, the Champlain Valley Office of Economic Opportunity, helps people in shelters move into permanent homes. Our share covers the costs that stand in the way: a security deposit, a first month’s rent, the utilities.</p>
+      <div class="nums"><div><b>$15k+</b><span>given to CVOEO</span></div><div><b>12+</b><span>people housed</span></div><div><b>100+</b><span>jobs finished</span></div></div>
+      <ol class="flow"><li>You book a job</li><li>We do it right</li><li>A share goes to CVOEO</li><li>A neighbor moves in</li></ol>
     </div>
-    <div class="purpose__img"><img class="" src="assets/photos/crew-three-sm.jpg" srcset="assets/photos/crew-three-sm.jpg 900w, assets/photos/crew-three-lg.jpg 2000w" sizes="(min-width: 900px) 50vw, 100vw" alt="Three painters on the job" loading="lazy" decoding="async"></div>
+    <div class="band__img"><img src="assets/photos/crew-three-sm.jpg" srcset="assets/photos/crew-three-sm.jpg 900w, assets/photos/crew-three-lg.jpg 2000w" sizes="(min-width: 760px) 50vw, 100vw" alt="Three painters on the job" loading="lazy" decoding="async"></div>
   </div>
 </section>
-<section class="values wrap" aria-labelledby="values-h">
-  <div class="sechead"><p class="label">(how we work)</p><h2 id="values-h">what you can count on</h2></div>
-  <ol class="steplist"><li><span class="n">01</span><h3>Quality you can see</h3><p>Every painter inspects their own work before anyone else does. If it isn’t right, we make it right.</p></li><li><span class="n">02</span><h3>Trust & respect</h3><p>We treat your home like it’s ours. Things covered, nothing left behind.</p></li><li><span class="n">03</span><h3>Clean, every day</h3><p>Brushes washed, drop cloths folded and walkways clear before we leave each afternoon.</p></li><li><span class="n">04</span><h3>Straight talk</h3><p>Step-by-step communication, so you always know what’s happening next and when.</p></li></ol>
+<section class="sec wrap" aria-labelledby="kw-h">
+  <div class="head"><p class="label">(kind words)</p><h2 id="kw-h">in their words</h2></div>
+  <div class="kind"><figure><blockquote><p>“Professional is not a large enough word to describe PWP’s craftsmanship and commitment.”</p></blockquote><figcaption class="label">Pat Waterman</figcaption></figure><figure><blockquote><p>“This house is a Victorian and had deferred maintenance. We are so happy to see it restored.”</p></blockquote><figcaption class="label">K Raz</figcaption></figure><figure><blockquote><p>“Our 16 year old kitchen cabinets were very worn and look like new again.”</p></blockquote><figcaption class="label">Lara Militello</figcaption></figure></div>
 </section>
-<section class="founders wrap" aria-labelledby="f-h">
-  <div class="sechead"><p class="label">(founders)</p><h2 id="f-h">gabe &amp; zach</h2></div>
-  <div class="founders__grid">
-    <figure><img class="" src="assets/photos/crew-portrait-1-sm.jpg" srcset="assets/photos/crew-portrait-1-sm.jpg 900w, assets/photos/crew-portrait-1-lg.jpg 2000w" sizes="(min-width: 900px) 30vw, 50vw" alt="Gabe Dunn in a Painting With Purpose cap" loading="lazy" decoding="async"><figcaption><span>Gabe Dunn</span><span class="meta">co-founder</span></figcaption></figure>
-    <figure><img class="" src="assets/photos/crew-portrait-2-sm.jpg" srcset="assets/photos/crew-portrait-2-sm.jpg 900w, assets/photos/crew-portrait-2-lg.jpg 2000w" sizes="(min-width: 900px) 30vw, 50vw" alt="Zach Dunn laughing in a Painting With Purpose cap" loading="lazy" decoding="async"><figcaption><span>Zach Dunn</span><span class="meta">co-founder</span></figcaption></figure>
-    <p class="founders__txt">Brothers Gabe and Zach Dunn started Painting With Purpose to prove a painting company could be really good at the work and really good for the community. One of them is on nearly every job, walking the estimate or checking the prep. Gabe also shoots most of the project photos on this site.</p>
+<section class="sec wrap" aria-labelledby="f-h">
+  <div class="head"><p class="label">(founders)</p><h2 id="f-h">gabe &amp; zach</h2></div>
+  <div class="people">
+    <figure><img src="assets/photos/crew-portrait-1-sm.jpg" srcset="assets/photos/crew-portrait-1-sm.jpg 900w, assets/photos/crew-portrait-1-lg.jpg 2000w" sizes="(min-width: 860px) 30vw, 50vw" alt="Gabe Dunn in a Painting With Purpose cap" loading="lazy" decoding="async"><figcaption><span>Gabe Dunn</span><span class="meta">co-founder</span></figcaption></figure>
+    <figure><img src="assets/photos/crew-portrait-2-sm.jpg" srcset="assets/photos/crew-portrait-2-sm.jpg 900w, assets/photos/crew-portrait-2-lg.jpg 2000w" sizes="(min-width: 860px) 30vw, 50vw" alt="Zach Dunn laughing in a Painting With Purpose cap" loading="lazy" decoding="async"><figcaption><span>Zach Dunn</span><span class="meta">co-founder</span></figcaption></figure>
+    <p class="people__txt">Brothers Gabe and Zach Dunn started Painting With Purpose to prove a painting company could be very good at the work and good for the place it works. Gabe takes most of the photographs on this site.</p>
   </div>
 </section>
 </main>
 <footer class="ftr">
-  <div class="ftr__cta">
-    <p class="label">(next)</p>
-    <a class="ftr__big" href="estimate.html">let’s take a look <span aria-hidden="true">→</span></a>
-    <p class="ftr__sub">Free walk-through and a written estimate. Or call <a href="tel:+18027246837">802-PAINTER</a>.</p>
+  <span class="logo wm" aria-hidden="true"></span>
+  <div class="ftr__in">
+    <div class="ftr__cta">
+      <p class="label">(inquire)</p>
+      <a class="ftr__big" href="estimate.html">let’s take a <span style="white-space:nowrap">look <span aria-hidden="true">→</span></span></a>
+      <p class="ftr__sub">A free walkthrough and a written estimate. Or call <a href="tel:+18027246837">802-PAINTER</a>.</p>
+    </div>
+    <div class="ftr__grid">
+      <a href="index.html" aria-label="Painting With Purpose, home"><span class="logo ftr__logo" aria-hidden="true"></span></a>
+      <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
+      <div><p class="label">contact</p><p><a href="tel:+18027246837">802-PAINTER</a><br><a href="mailto:office@pwpvt.com">office@pwpvt.com</a><br><a href="https://www.instagram.com/paintingwithpurposevt/">@paintingwithpurposevt</a></p></div>
+      <div><p class="label">pages</p><p><a href="work.html">work</a><br><a href="services.html">services</a><br><a href="about.html">purpose</a><br><a href="careers.html">careers</a><br><a href="estimate.html">free estimate</a></p></div>
+    </div>
+    <p class="ftr__fine"><span>© 2026 Painting With Purpose LLC</span><span>Part of every job goes to CVOEO.</span></p>
   </div>
-  <div class="ftr__grid">
-    <img class="ftr__logo" src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402" loading="lazy">
-    <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
-    <div><p class="label">contact</p><p><a href="tel:+18027246837">802-PAINTER</a><br><a href="https://www.instagram.com/paintingwithpurposevt/">@paintingwithpurposevt</a></p></div>
-    <div><p class="label">pages</p><p><a href="work.html">work</a><br><a href="services.html">services</a><br><a href="about.html">purpose</a><br><a href="careers.html">careers</a><br><a href="estimate.html">free estimate</a></p></div>
-  </div>
-  <p class="ftr__fine"><span>© 2026 Painting With Purpose</span><span>A share of every job goes to CVOEO</span></p>
 </footer>
-<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">Sound off</span></button>
-<script src="assets/js/projects.js"></script>
+<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">sound off</span></button>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/cine.js"></script>
 </body>

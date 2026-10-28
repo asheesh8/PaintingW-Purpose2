@@ -3,7 +3,7 @@ window.PWP_BEFORE_AFTER = [
   {
     "before": "assets/before-after/exterior-pair02-before.jpg",
     "after": "assets/before-after/exterior-pair02-after.jpg",
-    "title": "Green Victorian, Top to Bottom",
+    "title": "Green Victorian",
     "short": "green victorian",
     "what": "Exterior repaint",
     "where": "Greater Burlington",

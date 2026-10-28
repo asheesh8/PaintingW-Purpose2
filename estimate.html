@@ -3,24 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Free estimate | Painting With Purpose</title>
-<meta name="description" content="Request a free painting estimate in Greater Burlington, Vermont.">
+<title>Free estimate · Painting With Purpose</title>
+<meta name="description" content="Tell us about your project and we’ll set up a free walkthrough.">
 <meta name="theme-color" content="#0b151c">
-<meta property="og:title" content="Free estimate | Painting With Purpose">
-<meta property="og:description" content="Request a free painting estimate in Greater Burlington, Vermont.">
-<meta property="og:image" content="assets/photos/dsc-0058-lg.jpg">
+<meta property="og:title" content="Free estimate · Painting With Purpose">
+<meta property="og:description" content="Tell us about your project and we’ll set up a free walkthrough.">
+<meta property="og:image" content="assets/photos/dsc-0179-lg.jpg">
 <meta property="og:type" content="website">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter+Tight:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/cine.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter+Tight:wght@400;500&display=swap">
+<link rel="preload" href="assets/logo.svg" as="image" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body data-page="estimate">
 <a class="skip" href="#main">Skip to content</a>
-<header class="hdr">
-  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><img src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402"></a>
+<header class="hdr is-dark">
+  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><span class="logo " aria-hidden="true"></span></a>
   <nav class="hdr__nav" id="nav" aria-label="Main">
     <ul><li><a href="work.html">work</a></li><li><a href="services.html">services</a></li><li><a href="about.html">purpose</a></li><li><a href="careers.html">careers</a></li></ul>
     <a class="hdr__cta" href="estimate.html">free estimate</a>
@@ -28,49 +30,55 @@
   <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="nav"><span>menu</span></button>
 </header>
 <main id="main">
-<section class="ptitle wrap">
-  <p class="label">(free estimate)</p>
-  <h1>let’s take a look</h1>
-  <p class="ptitle__lede">Tell us a little about the project. We’ll be in touch within one business day to set up a walk-through.</p>
+<section class="phero phero--short">
+  <div class="media"><img style="object-position:50% 60%" src="assets/photos/dsc-1247-sm.jpg" srcset="assets/photos/dsc-1247-sm.jpg 900w, assets/photos/dsc-1247-lg.jpg 2000w" sizes="100vw" alt="The Painting With Purpose tent on a Vermont town street" fetchpriority="high" decoding="async"></div>
+  <div class="phero__txt">
+    <p class="label">(free estimate)</p>
+    <h1>let’s take a look</h1>
+    <p class="phero__lede">Tell us a little about the project and we’ll set up a time to walk it with you.</p>
+  </div>
+  
 </section>
 
-<section class="formwrap wrap">
+<section class="sec wrap formwrap">
   <form class="form" data-demo-form novalidate>
-    <fieldset><legend><span class="n">01</span>What do you need?</legend><div class="chips"><label class="chip"><input type="radio" name="service" value="residential" required><span>Residential painting</span></label><label class="chip"><input type="radio" name="service" value="commercial"><span>Commercial painting</span></label><label class="chip"><input type="radio" name="service" value="decks"><span>Deck staining</span></label><label class="chip"><input type="radio" name="service" value="lead"><span>Lead inspections</span></label><label class="chip"><input type="radio" name="service" value="gutters"><span>Gutter cleaning</span></label></div></fieldset>
+    <fieldset><legend><span class="n">01</span>What do you need?</legend><div class="chips"><label class="chip"><input type="radio" name="service" value="residential" required><span>Residential painting</span></label><label class="chip"><input type="radio" name="service" value="commercial"><span>Commercial painting</span></label><label class="chip"><input type="radio" name="service" value="decks"><span>Deck staining</span></label><label class="chip"><input type="radio" name="service" value="lead"><span>Lead inspection</span></label><label class="chip"><input type="radio" name="service" value="gutters"><span>Gutter cleaning</span></label></div></fieldset>
     <fieldset><legend><span class="n">02</span>Inside, outside, or both?</legend><div class="chips"><label class="chip"><input type="radio" name="where" value="interior" required><span>Interior</span></label><label class="chip"><input type="radio" name="where" value="exterior"><span>Exterior</span></label><label class="chip"><input type="radio" name="where" value="both"><span>Both</span></label></div></fieldset>
-    <fieldset><legend><span class="n">03</span>When are you hoping to start?</legend><div class="chips"><label class="chip"><input type="radio" name="when" value="asap" required><span>As soon as possible</span></label><label class="chip"><input type="radio" name="when" value="1-3"><span>1–3 months</span></label><label class="chip"><input type="radio" name="when" value="next"><span>Next season</span></label><label class="chip"><input type="radio" name="when" value="exploring"><span>Just exploring</span></label></div></fieldset>
+    <fieldset><legend><span class="n">03</span>When are you hoping to start?</legend><div class="chips"><label class="chip"><input type="radio" name="when" value="asap" required><span>As soon as possible</span></label><label class="chip"><input type="radio" name="when" value="soon"><span>In the next few months</span></label><label class="chip"><input type="radio" name="when" value="next"><span>Next season</span></label><label class="chip"><input type="radio" name="when" value="planning"><span>Just planning</span></label></div></fieldset>
     <fieldset><legend><span class="n">04</span>How do we reach you?</legend>
       <div class="flds"><label class="fld"><span>Full name</span><input type="text" name="name" required autocomplete="name"></label><label class="fld"><span>Phone</span><input type="tel" name="phone" required autocomplete="tel"></label><label class="fld"><span>Email</span><input type="email" name="email" required autocomplete="email"></label><label class="fld"><span>Town</span><input type="text" name="town" autocomplete="address-level2"></label></div>
       <label class="fld fld--wide"><span>Tell us about the project</span><textarea name="details" rows="4"></textarea></label>
     </fieldset>
     <p class="form__err" role="alert" hidden>Please fill in the highlighted fields.</p>
-    <button class="btn" type="submit">Request my estimate <span aria-hidden="true">→</span></button>
-    <p class="form__fine">Free and no obligation. We never share your info.</p>
+    <button class="btn" type="submit">request my estimate <span aria-hidden="true">→</span></button>
+    <p class="form__fine">Free, with no obligation. We don’t share your details.</p>
   </form>
-  <div class="form__done" hidden tabindex="-1"><h2>you’re on the list.</h2><p>Thanks. We’ll reach out within one business day to set up a time to walk the project.</p></div>
+  <div class="form__done" hidden tabindex="-1"><h2>you’re on the list.</h2><p>Thanks. We’ll be in touch soon to find a time to walk the project.</p></div>
   <aside class="formside">
-    <img class="" src="assets/photos/interior-entry-sm.jpg" srcset="assets/photos/interior-entry-sm.jpg 900w, assets/photos/interior-entry-lg.jpg 2000w" sizes="(min-width: 900px) 30vw, 100vw" alt="Freshly painted entry with a wood door and white trim" loading="lazy" decoding="async">
-    <p class="label">rather talk?</p><p>Call or text and a real person will pick up.<br><a href="tel:+18027246837">802-PAINTER</a></p>
-    <p class="label">every job gives back</p><p>A share of your project goes to CVOEO to help Vermonters find housing.</p>
+    <p class="label">rather talk?</p><p>Call or text and a person on our team will pick up.<br><a href="tel:+18027246837">802-PAINTER</a></p>
+    <small>133 Elm Street, Office B, Winooski · 8:00 to 5:00 daily</small>
+    <p class="label">every job gives back</p><p>Part of your project goes to CVOEO to help Vermonters move into a home.</p>
   </aside>
 </section>
 </main>
 <footer class="ftr">
-  <div class="ftr__cta">
-    <p class="label">(next)</p>
-    <a class="ftr__big" href="estimate.html">let’s take a look <span aria-hidden="true">→</span></a>
-    <p class="ftr__sub">Free walk-through and a written estimate. Or call <a href="tel:+18027246837">802-PAINTER</a>.</p>
+  <span class="logo wm" aria-hidden="true"></span>
+  <div class="ftr__in">
+    <div class="ftr__cta">
+      <p class="label">(inquire)</p>
+      <a class="ftr__big" href="estimate.html">let’s take a <span style="white-space:nowrap">look <span aria-hidden="true">→</span></span></a>
+      <p class="ftr__sub">A free walkthrough and a written estimate. Or call <a href="tel:+18027246837">802-PAINTER</a>.</p>
+    </div>
+    <div class="ftr__grid">
+      <a href="index.html" aria-label="Painting With Purpose, home"><span class="logo ftr__logo" aria-hidden="true"></span></a>
+      <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
+      <div><p class="label">contact</p><p><a href="tel:+18027246837">802-PAINTER</a><br><a href="mailto:office@pwpvt.com">office@pwpvt.com</a><br><a href="https://www.instagram.com/paintingwithpurposevt/">@paintingwithpurposevt</a></p></div>
+      <div><p class="label">pages</p><p><a href="work.html">work</a><br><a href="services.html">services</a><br><a href="about.html">purpose</a><br><a href="careers.html">careers</a><br><a href="estimate.html">free estimate</a></p></div>
+    </div>
+    <p class="ftr__fine"><span>© 2026 Painting With Purpose LLC</span><span>Part of every job goes to CVOEO.</span></p>
   </div>
-  <div class="ftr__grid">
-    <img class="ftr__logo" src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402" loading="lazy">
-    <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
-    <div><p class="label">contact</p><p><a href="tel:+18027246837">802-PAINTER</a><br><a href="https://www.instagram.com/paintingwithpurposevt/">@paintingwithpurposevt</a></p></div>
-    <div><p class="label">pages</p><p><a href="work.html">work</a><br><a href="services.html">services</a><br><a href="about.html">purpose</a><br><a href="careers.html">careers</a><br><a href="estimate.html">free estimate</a></p></div>
-  </div>
-  <p class="ftr__fine"><span>© 2026 Painting With Purpose</span><span>A share of every job goes to CVOEO</span></p>
 </footer>
-<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">Sound off</span></button>
-<script src="assets/js/projects.js"></script>
+<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">sound off</span></button>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/cine.js"></script>
 </body>

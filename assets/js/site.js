@@ -1,4 +1,4 @@
-/* Painting With Purpose, demo 2: header, menu, before/after sliders, reveals, demo forms. No libraries. */
+/* Painting With Purpose, demo 2: header, menu, before/after sliders, demo forms. No libraries. */
 (function () {
   "use strict";
   var doc = document.documentElement;
@@ -34,34 +34,12 @@
     set(range.value);
   });
 
-  // One gentle sweep on the featured slider the first time it is seen
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var big = document.querySelector(".ba--big .ba__frame");
-  if (big && !reduce && "IntersectionObserver" in window) {
-    var swept = false;
-    new IntersectionObserver(function (entries, obs) {
-      if (swept || !entries[0].isIntersecting) return;
-      swept = true; obs.disconnect();
-      var range = big.querySelector(".ba__range"), t0 = null;
-      function step(t) {
-        if (t0 === null) t0 = t;
-        var k = Math.min((t - t0) / 1800, 1);
-        var v = 50 + Math.sin(k * Math.PI * 2) * 30 * (1 - k);
-        range.value = v; big.style.setProperty("--p", v + "%");
-        if (k < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }, { threshold: 0.6 }).observe(big);
-  }
-
-  // Reveal on scroll
-  var rv = document.querySelectorAll(".tile, .proj, .srv, .ba, .steplist li, .purpose__in > *, .quote blockquote, .founders figure, .crew__grid > div");
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    rv.forEach(function (el) { el.classList.add("rv"); io.observe(el); });
-  }
+  // Work: the rest of the before/afters stay hidden until asked for
+  var more = document.querySelector("[data-more]");
+  if (more) more.addEventListener("click", function () {
+    document.querySelector(".bagrid").classList.add("is-all");
+    more.parentNode.remove();
+  });
 
   // Estimate: ?service=decks preselects a service
   var svc = new URLSearchParams(location.search).get("service");
