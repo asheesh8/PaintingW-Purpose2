@@ -125,7 +125,7 @@
     media();
     // some phones (low power mode) block autoplay until the first touch: retry then
     ["touchstart", "click", "keydown"].forEach(function (ev) {
-      window.addEventListener(ev, function () { clips.forEach(function (v) { }); media(); }, { once: true, passive: true });
+      window.addEventListener(ev, media, { once: true, passive: true });
     });
   }
 
