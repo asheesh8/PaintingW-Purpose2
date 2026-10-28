@@ -143,9 +143,22 @@ FOOTER = f"""<footer class="ftr">
 """
 
 
-def sechead(label, title, hid, aside=""):
+ART = {  # small watercolour accents (assets/art, paper knocked out to transparency): name -> (width, height)
+    "brush": (130, 202), "can": (183, 208), "farmhouse": (463, 269), "ladder": (153, 214),
+    "lake": (421, 242), "leaves": (231, 215), "swatches": (148, 199),
+}
+
+
+def art(name, cls=""):
+    w, h = ART[name]
+    return (f'<img class="wc wc--{name} {cls}" src="assets/art/{name}.png" width="{w}" height="{h}" '
+            f'alt="" aria-hidden="true" loading="lazy" decoding="async">')
+
+
+def sechead(label, title, hid, aside="", pic=""):
     aside = f'<p class="aside">{aside}</p>' if aside else ""
-    return f'<div class="head"><p class="label">{label}</p><h2 id="{hid}">{title}</h2>{aside}</div>'
+    pic = art(pic) if pic else ""
+    return f'<div class="head{" head--art" if pic else ""}"><p class="label">{label}</p><h2 id="{hid}">{title}</h2>{aside}{pic}</div>'
 
 
 def write(name, html):
@@ -327,7 +340,7 @@ def build_work(pairs):
        "Houses, halls and storefronts around Greater Burlington. Most of these photos were taken by Gabe on the last day of the job.",
        cap="Sigma Phi House · Burlington")}
 <section class="sec wrap" aria-labelledby="p-h">
-  {sechead("(selected projects)", "recent work", "p-h", f"{len(PROJECTS)} projects")}
+  {sechead("(selected projects)", "recent work", "p-h", pic="farmhouse")}
   <div class="pgrid">{cards}</div>
 </section>
 <section class="sec wrap" id="before-after" aria-labelledby="ba-h">
@@ -365,11 +378,11 @@ def build_services():
        "Five services, one standard: careful prep, daily cleanup and painters who check their own work.",
        cap="Library &amp; community hall · Greater Burlington")}
 <section class="sec wrap" aria-labelledby="s-h">
-  {sechead("(services)", "five ways we help", "s-h")}
+  {sechead("(services)", "five ways we help", "s-h", pic="brush")}
   <ol class="slist">{rows}</ol>
 </section>
 <section class="sec wrap" aria-labelledby="steps-h">
-  {sechead("(process)", "four steps, no surprises", "steps-h")}
+  {sechead("(process)", "four steps, no surprises", "steps-h", pic="can")}
   <ol class="cols">{steps}</ol>
 </section>
 <section class="sec wrap faq" aria-labelledby="faq-h">
@@ -396,7 +409,7 @@ def build_about():
        "A Greater Burlington painting company with one larger goal: helping end homelessness in Vermont.",
        cls="phero--vic", cap="Queen Anne Victorian · Burlington")}
 <section class="sec wrap story">
-  <p class="label">(story)</p>
+  <div class="story__side"><p class="label">(story)</p>{art("lake")}</div>
   <div class="story__txt">
     <p class="story__big">Painting is honest work. You can see it from the street. We wanted the reason behind it to be just as easy to see.</p>
     <div class="story__cols">
@@ -418,7 +431,7 @@ def build_about():
   </div>
 </section>
 <section class="sec wrap" aria-labelledby="kw-h">
-  {sechead("(kind words)", "in their words", "kw-h")}
+  {sechead("(kind words)", "in their words", "kw-h", pic="leaves")}
   <div class="kind">{''.join(f'<figure><blockquote><p>“{q}”</p></blockquote><figcaption class="label">{w}</figcaption></figure>' for q, w in KIND)}</div>
 </section>
 <section class="sec wrap" aria-labelledby="f-h">
@@ -470,6 +483,7 @@ def build_estimate():
   </form>
   <div class="form__done" hidden tabindex="-1"><h2>you’re on the list.</h2><p>Thanks. We’ll be in touch soon to find a time to walk the project.</p></div>
   <aside class="formside">
+    {art("swatches", "wc--side")}
     <p class="label">rather talk?</p><p>Call or text and a person on our team will pick up.<br><a href="tel:{TEL}">{PHONE}</a></p>
     <small>133 Elm Street, Office B, Winooski · 8:00 to 5:00 daily</small>
     <p class="label">every job gives back</p><p>Part of your project goes to CVOEO to help Vermonters move into a home.</p>
@@ -492,7 +506,7 @@ def build_careers():
 {phero(still("crew", "The Painting With Purpose crew beside their truck", "50% 30%"), "(careers)", "paint with us",
        "We are looking for reliable, careful people who take pride in their work. Experience helps. Attitude matters more.")}
 <section class="sec wrap" aria-labelledby="why-h">
-  {sechead("(why here)", "a crew, not just a job", "why-h")}
+  {sechead("(why here)", "a crew, not just a job", "why-h", pic="ladder")}
   <ol class="cols cols--3">{pk}</ol>
   <p class="cols__note">Short and long term disability, life insurance and flexible vacation.</p>
 </section>

@@ -187,6 +187,21 @@ video.clip { background: var(--night); }
 .head .label { grid-column: 1 / -1; }
 .head h2 { font-size: var(--t-h2); }
 .head .aside { margin: 0; font-size: var(--t-small); color: var(--mute); }
+/* Watercolour accents: small, quiet, never over the photography */
+.wc { display: block; height: auto; pointer-events: none; user-select: none; }
+.head--art .wc { grid-column: 2; grid-row: 1 / span 2; align-self: end; justify-self: end; margin-bottom: -6px; }
+.wc--farmhouse { width: clamp(150px, 18vw, 250px); }
+.wc--leaves { width: clamp(96px, 11vw, 150px); }
+.wc--brush, .wc--ladder { width: clamp(64px, 7vw, 96px); }
+.wc--can { width: clamp(84px, 9vw, 120px); }
+.wc--lake { width: min(100%, 260px); margin-top: 28px; }
+.wc--swatches { width: 84px; margin-bottom: 12px; }
+@media (max-width: 700px) {
+  .head--art { grid-template-columns: minmax(0, 1fr) auto; }
+  .head--art .wc { transform: scale(.82); transform-origin: 100% 100%; }
+  .wc--farmhouse { width: 34vw; }
+  .story__side .wc--lake { width: 62vw; margin-top: 18px; }
+}
 @media (max-width: 700px) { .head { grid-template-columns: 1fr; } }
 
 /* Two-column story */
