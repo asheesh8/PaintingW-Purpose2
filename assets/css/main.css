@@ -6,7 +6,7 @@
   --paper: #faf7f2;
   --ink: #0f1a21;
   --ink-2: #39434a;
-  --mute: #6d727a;
+  --mute: #5f646b;
   --line: #ddd5c8;
   --night: #0b151c;
   --night-2: #13222c;
@@ -48,7 +48,8 @@ em, i { font-style: normal; }
 p { margin: 0 0 1em; }
 p:last-child { margin-bottom: 0; }
 h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; letter-spacing: -.012em; line-height: 1.02; }
-:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+.phero :focus-visible, .vs :focus-visible, .porch :focus-visible, .band :focus-visible, .ftr :focus-visible, .hdr.is-dark :focus-visible, .hdr.is-open :focus-visible { outline-color: var(--sky); }
 
 .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 14px; }
 .skip:focus { top: 12px; }
@@ -91,11 +92,11 @@ h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; letter-spac
 .hdr.is-dark.is-scrolled::before { opacity: 1; background: rgba(11, 21, 28, .55); border-bottom-color: rgba(255, 255, 255, .08); }
 .hdr__logo { color: var(--navy); transition: color .3s; }
 .hdr.is-dark .hdr__logo { color: #fff; }
-.hdr__logo .logo { width: 92px; }
+.hdr__logo .logo { width: 108px; }
 .hdr__nav { display: flex; align-items: center; gap: 36px; }
 .hdr__nav ul { display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; font: 500 12px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; }
-.hdr__nav ul a { position: relative; padding: 6px 0; }
-.hdr__nav ul a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: currentColor; transition: right .3s var(--ease); }
+.hdr__nav ul a { position: relative; display: block; padding: 12px 0; }
+.hdr__nav ul a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 7px; height: 1px; background: currentColor; transition: right .3s var(--ease); }
 .hdr__nav ul a:hover::after, .hdr__nav ul a[aria-current]::after { right: 0; }
 .hdr__cta { padding: 12px 18px; border-radius: 999px; background: none; color: inherit; box-shadow: inset 0 0 0 1px currentColor; font: 500 12px/1 var(--font); letter-spacing: .14em; text-transform: uppercase; transition: background .2s, color .2s; }
 .hdr__cta:hover { background: var(--navy); color: #fff; box-shadow: none; }
@@ -111,6 +112,7 @@ h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 400; letter-spac
     opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
   }
   .hdr__nav ul { flex-direction: column; gap: 4px; font: 400 clamp(44px, 12vw, 72px)/1.08 var(--serif); letter-spacing: 0; text-transform: none; }
+  .hdr__nav ul a { padding: 2px 0; }
   .hdr__nav ul a::after { display: none; }
   .hdr__nav ul a[aria-current] { color: var(--sky); }
   .hdr__cta { padding: 16px 24px; font-size: 13px; background: var(--cream); color: var(--ink); }
@@ -149,10 +151,10 @@ video.clip { background: var(--night); }
 .phero__lede { max-width: 34em; margin: 4px 0 0; font-size: var(--t-lead); line-height: 1.45; color: rgba(255, 255, 255, .92); text-shadow: 0 1px 12px rgba(0, 0, 0, .6); }
 .phero__cap { position: absolute; z-index: 1; right: var(--gut); bottom: clamp(36px, 7vh, 80px); opacity: .8 !important; }
 .phero .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
-.vs--hero .beat { max-width: 13em; }
+.vs--hero .beat { max-width: 9.6em; }
 .vs--vic video.clip, .phero--vic video.clip { transform-origin: 0% 60%; transform: scale(1.4); }
 @media (max-aspect-ratio: 1/1) {
-  .vs--hero .beat { max-width: 13em; }
+  .vs--hero .beat { max-width: 9.6em; }
 .vs--vic video.clip, .phero--vic video.clip { transform: none; object-position: 30% 50%; }
 }
 @media (max-width: 700px) {
@@ -201,7 +203,7 @@ video.clip { background: var(--night); }
 .cols h3 { font-size: var(--t-h3); }
 .cols p { color: var(--ink-2); font-size: 15px; }
 .cols__note { margin-top: 28px; color: var(--mute); font-size: var(--t-small); }
-@media (max-width: 1020px) { .cols { grid-template-columns: 1fr 1fr; row-gap: 36px; } }
+@media (max-width: 1020px) { .cols:not(.cols--3) { grid-template-columns: 1fr 1fr; row-gap: 36px; } }
 @media (max-width: 600px) { .cols, .cols--3 { grid-template-columns: 1fr; row-gap: 28px; } }
 
 /* Work: project index */
@@ -253,6 +255,7 @@ video.clip { background: var(--night); }
 .srow li { padding: 7px 0; border-top: 1px solid var(--line); }
 .srow__img { position: relative; aspect-ratio: 5 / 4; overflow: hidden; }
 .srow__img img { width: 100%; height: 100%; object-fit: cover; }
+#lead .srow__img img { object-position: 50% 90%; }
 @media (max-width: 1020px) {
   .srow { grid-template-columns: 40px minmax(0, 1fr) clamp(120px, 26vw, 220px); }
   .srow__txt { grid-column: 2; grid-row: 2; }
@@ -354,6 +357,9 @@ video.clip { background: var(--night); }
 .ftr__grid .label { margin-bottom: 10px; }
 .ftr__grid p { color: rgba(239, 233, 223, .85); }
 .ftr__grid a:hover { color: var(--sky); }
+.ftr__links { list-style: none; margin: 0; padding: 0; color: rgba(239, 233, 223, .85); }
+.ftr__links a { display: inline-block; padding: 3px 0; }
+@media (max-width: 1024px) { .ftr__links a { padding: 8px 0; } }
 .ftr__logo { width: 150px; color: #fff; }
 .ftr__fine { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 0; padding-top: 24px; border-top: 1px solid rgba(239, 233, 223, .14); font-size: 12px; color: rgba(239, 233, 223, .55); }
 @media (max-width: 860px) { .ftr__grid { grid-template-columns: 1fr 1fr; row-gap: 32px; } .ftr__grid > :first-child { grid-column: 1 / -1; } }
@@ -365,6 +371,8 @@ video.clip { background: var(--night); }
   cursor: pointer; transition: opacity .4s, background .3s; }
 .snd:hover { background: rgba(11, 21, 28, .8); }
 .snd.away { opacity: 0; pointer-events: none; }
+.snd[hidden] { display: none; }
+body.menu-open .snd { opacity: 0; pointer-events: none; }
 .snd__bars { display: inline-flex; align-items: end; gap: 2px; height: 12px; }
 .snd__bars i { width: 2px; height: 3px; background: currentColor; }
 .snd[aria-pressed="true"] .snd__bars i { animation: eq 1s ease-in-out infinite; }

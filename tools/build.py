@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PHONE = "802-PAINTER"
 TEL = "+18027246837"
 EMAIL = "office@pwpvt.com"
+SITE = "https://paintingwithpurpose2.vercel.app"
 IG = "https://www.instagram.com/paintingwithpurposevt/"
 
 NAV = [
@@ -69,6 +70,7 @@ def still(name, alt, pos="50% 50%"):
 
 
 def head(title, desc, page):
+    url = {"home": "", "about": "about.html"}.get(page, f"{page}.html")
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -79,14 +81,20 @@ def head(title, desc, page):
 <meta name="theme-color" content="#0b151c">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="assets/photos/dsc-0179-lg.jpg">
+<meta property="og:image" content="{SITE}/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="{SITE}/{url}">
+<meta property="og:site_name" content="Painting With Purpose">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{SITE}/{url}">
 <link rel="icon" href="assets/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter+Tight:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Inter+Tight:wght@400;500&display=swap">
 <link rel="preload" href="assets/logo.svg" as="image" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -122,7 +130,7 @@ FOOTER = f"""<footer class="ftr">
       <a href="index.html" aria-label="Painting With Purpose, home">{logo("ftr__logo")}</a>
       <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
       <div><p class="label">contact</p><p><a href="tel:{TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{IG}">@paintingwithpurposevt</a></p></div>
-      <div><p class="label">pages</p><p>{'<br>'.join(f'<a href="{h}">{t}</a>' for h, t in NAV)}<br><a href="estimate.html">free estimate</a></p></div>
+      <div><p class="label">pages</p><ul class="ftr__links">{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="estimate.html">free estimate</a></li></ul></div>
     </div>
     <p class="ftr__fine"><span>© 2026 Painting With Purpose LLC</span><span>Part of every job goes to CVOEO.</span></p>
   </div>
@@ -195,7 +203,7 @@ SERVICES = [
      "Wash, repair and stain, so decks and porches are ready for another Vermont winter.",
      ["Pressure washing", "Board repair and sanding",
       "Stain or paint for wood, composite and metal", "Porch floors and stairs"]),
-    ("lead", "lead inspections", "dsc-0951",
+    ("lead", "lead inspections", "hero-0058",
      "Many older Vermont homes still carry lead paint. We are EPA lead certified and offer EMP inspections for owners and property managers.",
      ["Essential Maintenance Practices inspections", "Lead-safe prep and containment",
       "Careful cleanup", "Paperwork for owners and landlords"]),
@@ -209,7 +217,7 @@ SERVICE_ALT = {
     "dsc-0631": "Painter on a ladder at a red shingle colonial",
     "dsc-1335": "Dealership facade with a red canopy",
     "assets/before-after/deck-pair01-after.jpg": "A freshly stained back deck",
-    "dsc-0951": "Stairwell with white walls and original trim under a timber ceiling",
+    "hero-0058": "A Queen Anne Victorian, painted lead-safe from the first scrape",
     "dsc-0701": "Eaves and trim along the side of a blue lake cottage",
 }
 
@@ -276,7 +284,8 @@ def build_index():
 <section class="vs vs--hero" aria-label="Sigma Phi House">
   {clip("sigma", "Sigma Phi House on a fall afternoon, students on the lawn", eager=True)}
   <div class="vs__txt">
-    <h1 class="beat">Whether it’s a frat house on the hill,</h1>
+    <h1 class="sr">Painting With Purpose, house painters in Burlington, Vermont</h1>
+    <p class="beat">Whether it’s a frat house on the hill,</p>
     <p class="label vs__cap">Sigma Phi House · Burlington</p>
   </div>
 </section>
@@ -342,7 +351,7 @@ def build_work(pairs):
 
 def build_services():
     rows = "".join(f"""<li class="srow" id="{sid}">
-  <span class="n">{num(i)} / {num(len(SERVICES))}</span>
+  <span class="n">{num(i)}</span>
   <h3>{name}</h3>
   <div class="srow__txt"><p>{blurb}</p><ul>{''.join(f'<li>{x}</li>' for x in items)}</ul></div>
   <div class="srow__img">{simg(ph)}</div>

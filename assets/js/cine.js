@@ -17,6 +17,8 @@
   // drone clips: play only what is on screen; sound is off until the visitor asks for it,
   // then only the clip most in view is heard, faded in and out
   var clips = Array.prototype.slice.call(document.querySelectorAll("video.clip")).filter(function (v) { return v.querySelector("source"); });
+  // under reduced motion the clips never play, so the hero should not download either
+  if (reduce) clips.forEach(function (v) { v.preload = "none"; });
   var snd = document.querySelector(".snd");
   var soundOn = false;
   function shown(v) {
@@ -47,7 +49,7 @@
       if (soundOn && v === best) { if (v.muted) { v.volume = 0; v.muted = false; } fade(v, 1); }
       else if (!v.muted) fade(v, 0);
     });
-    if (snd) snd.classList.toggle("away", !clips.some(function (v) { return shown(v) > .15; }));
+    if (snd) snd.classList.toggle("away", !clips.some(function (v) { return shown(v) > .5; }));
   }
   if (clips.length && snd && !reduce) {
     snd.hidden = false;
