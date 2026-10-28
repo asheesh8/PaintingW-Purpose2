@@ -129,7 +129,7 @@ FOOTER = f"""<footer class="ftr">
     <div class="ftr__grid">
       <a href="index.html" aria-label="Painting With Purpose, home">{logo("ftr__logo")}</a>
       <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
-      <div><p class="label">contact</p><p><a href="tel:{TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{IG}">@paintingwithpurposevt</a></p></div>
+      <div><p class="label">contact</p><p><a href="tel:{TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="{IG}">Instagram</a> · <a href="https://www.facebook.com/PaintingWithPurposeVT">Facebook</a></p></div>
       <div><p class="label">pages</p><ul class="ftr__links">{''.join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)}<li><a href="estimate.html">free estimate</a></li></ul></div>
     </div>
     <p class="ftr__fine"><span>© 2026 Painting With Purpose LLC</span><span>Part of every job goes to CVOEO.</span></p>
@@ -153,6 +153,12 @@ def art(name, cls=""):
     w, h = ART[name]
     return (f'<img class="wc wc--{name} {cls}" src="assets/art/{name}.png" width="{w}" height="{h}" '
             f'alt="" aria-hidden="true" loading="lazy" decoding="async">')
+
+
+def band(name, end=False):
+    """Full-width watercolour band between sections."""
+    return (f'<div class="wband{" wband--end" if end else ""}" aria-hidden="true">'
+            f'<img src="assets/art/band-{name}.jpg" alt="" loading="lazy" decoding="async" width="1600" height="400"></div>')
 
 
 def sechead(label, title, hid, aside="", pic=""):
@@ -340,9 +346,10 @@ def build_work(pairs):
        "Houses, halls and storefronts around Greater Burlington. Most of these photos were taken by Gabe on the last day of the job.",
        cap="Sigma Phi House · Burlington")}
 <section class="sec wrap" aria-labelledby="p-h">
-  {sechead("(selected projects)", "recent work", "p-h", pic="farmhouse")}
+  {sechead("(selected projects)", "recent work", "p-h")}
   <div class="pgrid">{cards}</div>
 </section>
+{band("homes")}
 <section class="sec wrap" id="before-after" aria-labelledby="ba-h">
   {sechead("(before &amp; after)", f"{len(pairs)} transformations", "ba-h", "drag across each photo to compare")}
   <div class="bagrid">
@@ -350,12 +357,14 @@ def build_work(pairs):
   </div>
   <div class="more"><button class="btn btn--ghost" type="button" data-more>show all {len(pairs)} <span aria-hidden="true">↓</span></button></div>
 </section>
+{band("tools")}
 <section class="sec wrap" aria-label="What clients say">
   <figure class="quote">
     <blockquote><p>“{QUOTE[0]}”</p></blockquote>
     <figcaption class="label">{QUOTE[1]} · Google review</figcaption>
   </figure>
 </section>
+{band("lakeside", end=True)}
 </main>
 """
     html += FOOTER
@@ -378,13 +387,15 @@ def build_services():
        "Five services, one standard: careful prep, daily cleanup and painters who check their own work.",
        cap="Library &amp; community hall · Greater Burlington")}
 <section class="sec wrap" aria-labelledby="s-h">
-  {sechead("(services)", "five ways we help", "s-h", pic="brush")}
+  {sechead("(services)", "five ways we help", "s-h")}
   <ol class="slist">{rows}</ol>
 </section>
+{band("mountains")}
 <section class="sec wrap" aria-labelledby="steps-h">
-  {sechead("(process)", "four steps, no surprises", "steps-h", pic="can")}
+  {sechead("(process)", "four steps, no surprises", "steps-h")}
   <ol class="cols">{steps}</ol>
 </section>
+{band("village")}
 <section class="sec wrap faq" aria-labelledby="faq-h">
   <div class="faqgrid">
     <div>
@@ -395,6 +406,7 @@ def build_services():
     <div>{faq}</div>
   </div>
 </section>
+{band("foliage", end=True)}
 </main>
 """
     html += FOOTER
@@ -409,7 +421,7 @@ def build_about():
        "A Greater Burlington painting company with one larger goal: helping end homelessness in Vermont.",
        cls="phero--vic", cap="Queen Anne Victorian · Burlington")}
 <section class="sec wrap story">
-  <div class="story__side"><p class="label">(story)</p>{art("lake")}</div>
+  <p class="label">(story)</p>
   <div class="story__txt">
     <p class="story__big">Painting is honest work. You can see it from the street. We wanted the reason behind it to be just as easy to see.</p>
     <div class="story__cols">
@@ -418,6 +430,7 @@ def build_about():
     </div>
   </div>
 </section>
+{band("foliage")}
 <section class="band" aria-labelledby="cvoeo-h">
   <div class="wrap band__in">
     <div>
@@ -431,9 +444,10 @@ def build_about():
   </div>
 </section>
 <section class="sec wrap" aria-labelledby="kw-h">
-  {sechead("(kind words)", "in their words", "kw-h", pic="leaves")}
+  {sechead("(kind words)", "in their words", "kw-h")}
   <div class="kind">{''.join(f'<figure><blockquote><p>“{q}”</p></blockquote><figcaption class="label">{w}</figcaption></figure>' for q, w in KIND)}</div>
 </section>
+{band("homes")}
 <section class="sec wrap" aria-labelledby="f-h">
   {sechead("(founders)", "gabe &amp; zach", "f-h")}
   <div class="people">
@@ -442,6 +456,7 @@ def build_about():
     <p class="people__txt">Brothers Gabe and Zach Dunn started Painting With Purpose to prove a painting company could be very good at the work and good for the place it works. Gabe takes most of the photographs on this site.</p>
   </div>
 </section>
+{band("mountains", end=True)}
 </main>
 """
     html += FOOTER
@@ -489,6 +504,7 @@ def build_estimate():
     <p class="label">every job gives back</p><p>Part of your project goes to CVOEO to help Vermonters move into a home.</p>
   </aside>
 </section>
+{band("village", end=True)}
 </main>
 """
     html += FOOTER
@@ -506,10 +522,11 @@ def build_careers():
 {phero(still("crew", "The Painting With Purpose crew beside their truck", "50% 30%"), "(careers)", "paint with us",
        "We are looking for reliable, careful people who take pride in their work. Experience helps. Attitude matters more.")}
 <section class="sec wrap" aria-labelledby="why-h">
-  {sechead("(why here)", "a crew, not just a job", "why-h", pic="ladder")}
+  {sechead("(why here)", "a crew, not just a job", "why-h")}
   <ol class="cols cols--3">{pk}</ol>
   <p class="cols__note">Short and long term disability, life insurance and flexible vacation.</p>
 </section>
+{band("tools")}
 <section class="sec wrap" aria-labelledby="roles-h">
   {sechead("(open roles)", "hiring now", "roles-h")}
   <ul class="roles"><li><span class="n">01</span><span class="t">Painter</span><span class="d">Full-time · $18 to $30 an hour</span><span class="meta">Greater Burlington</span></li></ul>
@@ -531,6 +548,7 @@ def build_careers():
     <p class="label">prefer to call?</p><p><a href="tel:{TEL}">{PHONE}</a></p>
   </aside>
 </section>
+{band("mountains", end=True)}
 </main>
 """
     html += FOOTER

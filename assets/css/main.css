@@ -410,3 +410,11 @@ body.menu-open .snd { opacity: 0; pointer-events: none; }
 .kind blockquote { margin: 0; }
 .kind p { font: 400 clamp(22px, 2vw, 30px)/1.25 var(--serif); }
 @media (max-width: 860px) { .kind { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Watercolour bands between sections */
+.wband { margin-top: clamp(56px, 7vw, 112px); height: clamp(150px, 22vw, 340px); overflow: hidden; }
+.wband img { width: 100%; height: 100%; object-fit: cover; }
+.wband + .sec { padding-top: clamp(40px, 5vw, 80px); }
+.wband + .band { margin-top: 0; }
+.wband--end { margin-bottom: calc(-1 * var(--sec)); }
+@media (max-width: 700px) { .wband { height: 42vw; } }
