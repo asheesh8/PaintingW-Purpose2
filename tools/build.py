@@ -33,6 +33,9 @@ def clip(name, alt, eager=False):
     written once the file exists in assets/video, so the poster still shows until then."""
     src = ROOT / f"assets/video/{name}.mp4"
     source = f'<source src="assets/video/{name}.mp4" type="video/mp4">' if src.exists() else ""
+    small = ROOT / f"assets/video/{name}-720.mp4"
+    if src.exists() and small.exists():
+        source = f'<source src="assets/video/{name}-720.mp4" type="video/mp4" media="(max-width: 900px)">' + source
     return (f'<video class="clip" muted loop playsinline preload="{"auto" if eager else "none"}" '
             f'poster="assets/video/{name}.jpg" aria-label="{alt}">{source}</video>')
 

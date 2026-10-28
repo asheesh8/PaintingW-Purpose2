@@ -84,7 +84,7 @@
     var r = v.getBoundingClientRect();
     var h = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
     var w = Math.max(0, Math.min(r.right, innerWidth) - Math.max(r.left, 0));
-    return (h * w) / (innerWidth * innerHeight);
+    return (h * w) / Math.max(1, Math.min(r.width * r.height, innerWidth * innerHeight));
   }
   function fade(v, to) {
     cancelAnimationFrame(v._f);
