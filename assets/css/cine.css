@@ -288,3 +288,29 @@ video.clip { display: block; width: 100%; height: 100%; object-fit: cover; backg
 .vband figcaption { position: absolute; left: var(--gut); bottom: 20px; z-index: 1; color: rgba(255, 255, 255, .9); }
 .vband--vic video { transform-origin: 0% 60%; transform: scale(1.4); }
 @media (max-aspect-ratio: 1/1) { .vband { height: 62vh; } .vband--vic video { transform: none; object-position: 30% 50%; } }
+
+/* ---------- native, one-to-one scrolling: no pinned scenes on the home page ---------- */
+.archpic, .archpic img { clip-path: none !important; transform: none !important; transition: none !important; }
+.up { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+/* full-screen video sections, each with a solid scrim under its words */
+.vs { position: relative; height: 100vh; height: 100svh; min-height: 520px; overflow: hidden; background: var(--night); color: #fff; }
+.vs + .vs { height: 92vh; height: 92svh; }
+.vs video.clip { position: absolute; inset: 0; }
+.vs::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8, 14, 18, .55) 0, rgba(8, 14, 18, 0) 22%, rgba(8, 14, 18, 0) 42%, rgba(8, 14, 18, .55) 66%, rgba(8, 14, 18, .88) 100%); }
+.vs__txt { position: absolute; left: var(--gut); right: var(--gut); bottom: clamp(36px, 8vh, 80px); z-index: 1; display: grid; gap: 14px; max-width: 1100px; }
+.vs .beat { font-weight: 400; text-shadow: 0 2px 18px rgba(0, 0, 0, .55), 0 0 2px rgba(0, 0, 0, .35); }
+.vs .label { color: #fff; opacity: .92; text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+.vs--vic video.clip { transform-origin: 0% 60%; transform: scale(1.4); }
+@media (max-aspect-ratio: 1/1) { .vs--vic video.clip { transform: none; object-position: 30% 50%; } }
+@media (max-width: 700px) { .vs .beat { font-size: 12vw; } }
+
+.porch { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(24px, 5vw, 80px); padding: clamp(64px, 10vh, 120px) var(--gut); }
+.porch__arch { order: 2; justify-self: center; width: min(32vw, 52vh); aspect-ratio: 9 / 15; border-radius: 999px 999px 14px 14px; overflow: hidden;
+  box-shadow: 0 0 0 10px #18303d, 0 0 0 11px rgba(104, 171, 228, .35), 0 40px 80px rgba(0, 0, 0, .5); }
+.porch__arch video { height: 100%; }
+.porch h2 { font-size: clamp(52px, 7vw, 120px); font-weight: 300; margin-top: 10px; color: #fff; }
+.porch h2::first-letter { text-transform: none; }
+.porch .lead { max-width: 28em; color: rgba(239, 233, 223, .85); margin: 22px 0 26px; }
+@media (max-width: 760px) { .porch { grid-template-columns: 1fr; } .porch__arch { order: 0; width: 60vw; } .porch h2 { font-size: 13vw; } }

@@ -39,7 +39,7 @@ def clip(name, alt, eager=False):
 
 def vband(name, alt, cap, cls=""):
     """Full-width drone clip for an inner page."""
-    return f'<figure class="vband archpic {cls}">{clip(name, alt)}<figcaption class="label">{cap}</figcaption></figure>'
+    return f'<figure class="vband {cls}">{clip(name, alt)}<figcaption class="label">{cap}</figcaption></figure>'
 
 def head(title, desc, page):
     return f"""<!doctype html>
@@ -284,42 +284,31 @@ def build_index(pairs):
                 "home")
     html += header("index", over=True)
     html += f"""<main id="main">
-<section class="scene s-hero" aria-label="Introduction">
-  <div class="scene__stick">
-    <div class="s-hero__win">{clip("sigma", "Sigma Phi House on a fall afternoon, students on the lawn", eager=True)}</div>
-    <p class="s-hero__kick label">Painting With Purpose · Burlington, Vermont</p>
-    <div class="s-hero__split" aria-hidden="true"><span>Careful</span><span>color.</span></div>
-    <div class="s-hero__end">
-      <h1 class="sr">Painting With Purpose: house painters in Burlington, Vermont</h1>
-      <p class="beat">Whether it’s a frat house on the hill,</p>
-      <p class="s-hero__cap label">Sigma Phi House · Burlington</p>
-    </div>
-    <p class="s-hero__scroll">Scroll</p>
+<section class="vs vs--hero" aria-label="Sigma Phi House">
+  {clip("sigma", "Sigma Phi House on a fall afternoon, students on the lawn", eager=True)}
+  <div class="vs__txt">
+    <p class="label">Painting With Purpose · Burlington, Vermont</p>
+    <h1 class="beat">Whether it’s a frat house on the hill,</h1>
+    <p class="label vs__cap">Sigma Phi House · Burlington</p>
   </div>
 </section>
-
-<section class="scene s-story night" aria-label="What we paint">
-  <div class="scene__stick">
-    <div class="s-story__layer s-story__layer--vic on" data-at="0">
-      {clip("victorian", "A Queen Anne Victorian on a quiet street, a neighbor walking a dog past")}
-      <div class="s-story__txt"><p class="beat">a Victorian on a quiet street,</p><p class="label">Queen Anne Victorian · Burlington</p></div>
-    </div>
-    <div class="s-story__layer" data-at=".34">
-      {clip("library", "A library atrium with readers, timber ceilings and a black steel stair")}
-      <div class="s-story__txt"><p class="beat">a library in the middle of town,</p><p class="label">Library &amp; community hall · Greater Burlington</p></div>
-    </div>
-    <div class="s-story__layer s-story__end" data-at=".66">
-      <div class="s-story__arch">{clip("porch-tall", "A freshly painted covered porch with a diamond inlay in the floor")}</div>
-      <div class="s-story__final">
-        <p class="beat beat--sm">or the porch you come home to,</p>
-        <h2>we paint with purpose.</h2>
-        <p class="lead">A Burlington crew who scrape, prime and paint by hand, then walk every finished job with you. Part of every job helps a Vermont neighbor find a home.</p>
-        <a class="btn btn--light" href="estimate.html">Free estimate <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
+<section class="vs vs--vic" aria-label="Queen Anne Victorian">
+  {clip("victorian", "A Queen Anne Victorian on a quiet street, a neighbor walking a dog past")}
+  <div class="vs__txt"><p class="beat">a Victorian on a quiet street,</p><p class="label vs__cap">Queen Anne Victorian · Burlington</p></div>
+</section>
+<section class="vs" aria-label="Library">
+  {clip("library", "A library atrium with readers, timber ceilings and a black steel stair")}
+  <div class="vs__txt"><p class="beat">a library in the middle of town,</p><p class="label vs__cap">Library &amp; community hall · Greater Burlington</p></div>
+</section>
+<section class="porch night">
+  <div class="porch__arch">{clip("porch-tall", "A freshly painted covered porch with a diamond inlay in the floor")}</div>
+  <div class="porch__txt">
+    <p class="beat beat--sm">or the porch you come home to,</p>
+    <h2>we paint with purpose.</h2>
+    <p class="lead">A Burlington crew who scrape, prime and paint by hand, then walk every finished job with you. Part of every job helps a Vermont neighbor find a home.</p>
+    <a class="btn btn--light" href="estimate.html">Free estimate <span aria-hidden="true">→</span></a>
   </div>
 </section>
-
 </main>
 """
     html += FOOTER

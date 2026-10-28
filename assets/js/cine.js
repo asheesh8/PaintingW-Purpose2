@@ -25,7 +25,7 @@
   var storyLayers = Array.prototype.slice.call(document.querySelectorAll(".s-story__layer"));
 
   var hdr = document.querySelector(".hdr");
-  var darks = Array.prototype.slice.call(document.querySelectorAll(".night, .s-hero, .s-ba"));
+  var darks = Array.prototype.slice.call(document.querySelectorAll(".night, .s-hero, .s-ba, .vs"));
   function headerTone() {
     if (!hdr) return;
     var y = hdr.offsetHeight / 2;

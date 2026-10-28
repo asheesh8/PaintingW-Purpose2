@@ -18,7 +18,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
   font: 400 17px/1.55 var(--font); font-optical-sizing: auto;
@@ -308,7 +308,7 @@ a.more:hover { color: var(--navy); }
 .nf { display: flex; gap: 24px; align-items: center; }
 
 /* Reveal on scroll */
-.js .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.js .rv { opacity: 1; }
 .js .rv.in { opacity: 1; transform: none; }
 
 /* Tablet */
