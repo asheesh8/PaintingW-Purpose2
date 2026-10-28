@@ -57,7 +57,7 @@ def header(page, over=False):
         f'<li><a href="{h}"{" aria-current=\"page\"" if page == h.split(".")[0] else ""}>{t}</a></li>'
         for h, t in NAV)
     return f"""<header class="hdr{' hdr--over' if over else ''}">
-  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><img src="assets/logo.png" alt="Painting With Purpose" width="600" height="402"></a>
+  <a class="hdr__logo" href="index.html" aria-label="Painting With Purpose, home"><img src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402"></a>
   <nav class="hdr__nav" id="nav" aria-label="Main">
     <ul>{links}</ul>
     <a class="hdr__cta" href="estimate.html">free estimate</a>
@@ -74,7 +74,7 @@ FOOTER = f"""<footer class="ftr">
     <p class="ftr__sub">Free walk-through and a written estimate. Or call <a href="tel:{TEL}">{PHONE}</a>.</p>
   </div>
   <div class="ftr__grid">
-    <img class="ftr__logo" src="assets/logo.png" alt="Painting With Purpose" width="600" height="402" loading="lazy">
+    <img class="ftr__logo" src="assets/logo-200.png" srcset="assets/logo-200.png 200w, assets/logo.png 600w" sizes="140px" alt="Painting With Purpose" width="600" height="402" loading="lazy">
     <div><p class="label">studio</p><p>Residential &amp; commercial painting<br>Greater Burlington, Vermont</p></div>
     <div><p class="label">contact</p><p><a href="tel:{TEL}">{PHONE}</a><br><a href="{IG}">@paintingwithpurposevt</a></p></div>
     <div><p class="label">pages</p><p>{'<br>'.join(f'<a href="{h}">{t}</a>' for h, t in NAV)}<br><a href="estimate.html">free estimate</a></p></div>
