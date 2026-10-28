@@ -35,7 +35,7 @@ def head(title, desc, page):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="theme-color" content="#f6f5f1">
+<meta name="theme-color" content="#0b151c">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="assets/photos/dsc-0058-lg.jpg">
@@ -43,8 +43,9 @@ def head(title, desc, page):
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter+Tight:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/cine.css">
 </head>
 <body data-page="{page}">
 <a class="skip" href="#main">Skip to content</a>
@@ -82,6 +83,7 @@ FOOTER = f"""<footer class="ftr">
 </footer>
 <script src="assets/js/projects.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/cine.js"></script>
 </body>
 </html>
 """
@@ -230,90 +232,134 @@ def num(i):
 # --------------------------------------------------------------------------
 # Pages
 
+REVIEWS_FULL = [
+    ("The BEST experience we’ve ever had with painters. They showed up on time with everything, were clean and tidy, and did the job expertly and within the time frame they estimated.", "Barbara Boutsikaris"),
+    ("Professional is not a large enough word to describe PWP’s craftsmanship and commitment. Matt and Josh methodically and meticulously got it done, and the results are fantastic.", "Pat Waterman"),
+    ("This house is a Victorian and had deferred maintenance. They handled lead paint abatement and scraped beautifully before painting. We are so happy to see it restored.", "K Raz"),
+    ("Our 16 year old kitchen cabinets were very worn and look like new again! Professional, clean, efficient, on time and reasonable in price.", "Lara Militello"),
+    ("They fixed a crack from a previous painting company and painted shelves and baseboards with precision. Their mission of giving back is truly amazing.", "Pam Mathe"),
+]
+
+
+def rev(q, who):
+    return f'<blockquote class="rev"><p>“{q}”</p><footer><span>{who}</span><span>★★★★★</span></footer></blockquote>'
+
+
 def build_index(pairs):
-    sel = [PROJECTS[0], PROJECTS[2], PROJECTS[3], PROJECTS[4], PROJECTS[6], PROJECTS[5]]
-    layout = ["w-7", "w-5 tall", "w-5", "w-7", "w-6 tall", "w-6 tall"]
-    imgs = {"lake-cottage": "dsc-0686", "library": "dsc-0995", "built-ins": "dsc-1094"}
-    tiles = []
-    for i, (p, lay) in enumerate(zip(sel, layout), 1):
-        ph = imgs.get(p["id"], p["photos"][0])
-        tiles.append(f"""<a class="tile {lay}" href="work.html#{p['id']}">
-    <div class="tile__img">{photo(ph, ALT[ph], sizes="(min-width: 900px) 60vw, 100vw")}</div>
-    <p class="tile__cap"><span class="n">{num(i)}</span><span class="t">{p['title']}</span><span class="meta">{p['where']}</span></p>
-  </a>""")
-    services = "".join(
-        f'<li><a href="services.html#{sid}"><span class="n">{num(i)}</span><span class="t">{name}</span>'
-        f'<span class="d">{blurb}</span><span class="arr" aria-hidden="true">→</span></a></li>'
-        for i, (sid, name, _, blurb, _) in enumerate(SERVICES, 1))
-    thumbs = "".join(
-        f'<a class="bathumb" href="work.html#before-after"><img src="{p["after"]}" alt="{p["title"]}, after" loading="lazy">'
-        f'<span>{p["title"]}</span></a>' for p in pairs[1:4])
-    q, who = REVIEWS[0]
+    cards = [
+        ("dsc-0179", "Sigma Phi House", "Burlington", "wide"),
+        ("dsc-0686", "Lake Cottage", "Lake Champlain", ""),
+        ("dsc-0995", "Library & Hall", "Greater Burlington", "wide"),
+        ("dsc-1371", "Porch Floor", "Greater Burlington", ""),
+        ("dsc-0631", "Red Shingle Colonial", "Chittenden County", "wide"),
+        ("dsc-1094", "Slate Built-ins", "Greater Burlington", ""),
+    ]
+    ids = {"Sigma Phi House": "sigma-phi", "Lake Cottage": "lake-cottage", "Library & Hall": "library",
+           "Porch Floor": "built-ins", "Red Shingle Colonial": "red-shingle", "Slate Built-ins": "built-ins"}
+    track = "".join(
+        f'<a class="card {c}" href="work.html#{ids[t]}"><div class="card__img">{photo(ph, ALT[ph], sizes="(min-width: 900px) 50vw, 85vw")}</div>'
+        f'<p class="card__cap"><span class="n">{num(i)}</span><span class="t">{t}</span><span class="meta">{w}</span></p></a>'
+        for i, (ph, t, w, c) in enumerate(cards, 1))
+    ba = next((p for p in pairs if "Victorian" in p["title"]), pairs[0])
+    cols = [REVIEWS_FULL[0:2] + REVIEWS_FULL[2:3], REVIEWS_FULL[2:5], [REVIEWS_FULL[4], REVIEWS_FULL[0], REVIEWS_FULL[3]]]
+    revcols = "".join('<div class="revs__col">' + "".join(rev(q, w) for q, w in col * 2) + "</div>" for col in cols)
+
     html = head("Painting With Purpose | House painters in Burlington, Vermont",
                 "Residential and commercial painting across Greater Burlington, Vermont. A share of every job helps Vermonters find housing.",
                 "home")
     html += header("index", over=True)
     html += f"""<main id="main">
-<section class="hero">
-  {photo("dsc-0058", ALT["dsc-0058"], "hero__img", eager=True)}
-  <div class="hero__txt">
-    <h1>good work,<br>for good.</h1>
-    <div class="hero__meta">
-      <p>House painters in Burlington, Vermont.<br>A share of every job goes to ending homelessness.</p>
-      <a class="btn btn--light" href="estimate.html">free estimate <span aria-hidden="true">→</span></a>
+<section class="scene s-hero" aria-label="Introduction">
+  <div class="scene__stick">
+    <div class="s-hero__win">
+      <picture>
+        <source media="(max-width: 700px)" srcset="assets/photos/hero-0058-m-sm.jpg 720w, assets/photos/hero-0058-m-lg.jpg 1600w" sizes="100vw">
+        <img src="assets/photos/hero-0058-sm.jpg" srcset="assets/photos/hero-0058-sm.jpg 900w, assets/photos/hero-0058-lg.jpg 2000w" sizes="100vw" alt="{ALT['dsc-0058']}" fetchpriority="high">
+      </picture>
     </div>
-  </div>
-  <p class="hero__credit">Queen Anne Victorian · Greater Burlington</p>
-</section>
-
-<section class="intro wrap">
-  <p class="label">(01) studio</p>
-  <p class="intro__big">Painting With Purpose is a Burlington crew that preps carefully, paints cleanly and walks every job with you at the end. <span class="mute">Then we send part of what you paid to CVOEO, to help a Vermont neighbor find a home.</span></p>
-</section>
-
-<section class="work wrap" aria-labelledby="work-h">
-  <div class="sechead"><p class="label">(02) selected work</p><h2 id="work-h">recent projects</h2><a class="more" href="work.html">all work →</a></div>
-  <div class="tiles">
-  {''.join(tiles)}
-  </div>
-</section>
-
-<section class="bafeature wrap" aria-labelledby="ba-h">
-  <div class="sechead"><p class="label">(03) before &amp; after</p><h2 id="ba-h">drag to compare</h2><a class="more" href="work.html#before-after">all {len(pairs)} →</a></div>
-  <div class="bafeature__grid">
-    {slider(pairs[0], "ba--big")}
-    <div class="bafeature__side">
-      <p class="bafeature__desc">{pairs[0]['desc']}</p>
-      <div class="bathumbs">{thumbs}</div>
+    <p class="s-hero__kick label">Painting With Purpose · Burlington, Vermont</p>
+    <div class="s-hero__split" aria-hidden="true"><span>Careful</span><span>color.</span></div>
+    <div class="s-hero__end">
+      <h1>Good work,<br>for good.</h1>
+      <div>
+        <p>House painters for Vermont’s old homes and new ones. A share of every job goes to ending homelessness in our state.</p>
+        <a class="btn btn--light" href="estimate.html">Free estimate <span aria-hidden="true">→</span></a>
+      </div>
     </div>
+    <p class="s-hero__scroll">Scroll</p>
   </div>
 </section>
 
-<section class="purpose" aria-labelledby="purpose-h">
-  <div class="wrap purpose__in">
-    <div class="purpose__txt">
-      <p class="label">(04) purpose</p>
-      <h2 id="purpose-h">every job helps a neighbor find a home.</h2>
-      <p>We partner with the Champlain Valley Office of Economic Opportunity. A share of every project goes to their housing work, built into the price, never added on top.</p>
-      <dl class="stats">
-        <div><dt>100+</dt><dd>jobs finished</dd></div>
-        <div><dt>12+</dt><dd>neighbors housed</dd></div>
-        <div><dt>$0</dt><dd>extra to you</dd></div>
+<section class="scene s-read" aria-label="Who we are">
+  <div class="scene__stick wrap">
+    <p class="label">(01) The studio</p>
+    <p class="s-read__txt"><span data-words="">We are a Burlington crew who scrape, prime and paint by hand, then walk every finished job with you.</span> <span data-words="sky">And part of what you pay helps a Vermont neighbor find a home.</span></p>
+  </div>
+</section>
+
+<section class="scene s-draw" aria-label="From drawing to paint">
+  <div class="scene__stick">
+    <div class="s-draw__l">
+      <p class="label">(02) The process</p>
+      <h2>Every line.<span class="mute">Every coat.</span></h2>
+      <dl class="spec">
+        <div><dt>Prep</dt><dd>Scraped, sanded, primed</dd></div>
+        <div><dt>Paint</dt><dd>Two finish coats</dd></div>
+        <div><dt>Lead</dt><dd>Certified lead-safe</dd></div>
+        <div><dt>Estimate</dt><dd>Free, written</dd></div>
       </dl>
-      <a class="btn btn--light" href="about.html">our purpose <span aria-hidden="true">→</span></a>
     </div>
-    <div class="purpose__img">{photo("crew", "The Painting With Purpose crew in white painter’s clothes beside their truck", sizes="(min-width: 900px) 50vw, 100vw")}</div>
+    <div class="s-draw__img">
+      {photo("draw-0179", "Line drawing of the Sigma Phi house")}
+      <div class="s-draw__paint">{photo("dsc-0179", ALT["dsc-0179"])}</div>
+      <span class="s-draw__line" aria-hidden="true"></span>
+    </div>
+    <div class="s-draw__r">
+      <h2>Your home.<span class="mute">Your colors.</span></h2>
+      <p>We help you choose, sample on the wall, and then do the slow part properly, from the first scrape to the final walk-through.</p>
+      <p class="s-draw__step">Sigma Phi House · Burlington</p>
+      <a class="link" href="services.html">How a job runs →</a>
+    </div>
   </div>
 </section>
 
-<section class="svc wrap" aria-labelledby="svc-h">
-  <div class="sechead"><p class="label">(05) services</p><h2 id="svc-h">what we do</h2><a class="more" href="services.html">details →</a></div>
-  <ul class="svclist">{services}</ul>
+<section class="scene s-side night" aria-label="Recent work">
+  <div class="scene__stick">
+    <span class="ghost" aria-hidden="true">Vermont</span>
+    <div class="s-side__head wrap"><div><p class="label">(03) Selected work</p><h2>Recent projects</h2></div><a class="link" href="work.html">All work →</a></div>
+    <div class="s-side__track">{track}</div>
+    <div class="s-side__bar" aria-hidden="true"></div>
+  </div>
 </section>
 
-<section class="quote wrap">
-  <p class="label">(06) word of mouth</p>
-  <blockquote><p>“{q}”</p><footer>{who} · Google review ★★★★★</footer></blockquote>
+<section class="scene s-ba" aria-label="Before and after">
+  <div class="scene__stick">
+    <div class="s-ba__frame">
+      <img src="{ba['before']}" alt="{ba['title']}, before" loading="lazy">
+      <img class="s-ba__after" src="{ba['after']}" alt="{ba['title']}, after" loading="lazy">
+      <span class="s-ba__edge" aria-hidden="true"></span>
+    </div>
+    <div class="s-ba__top"><div><p class="label">(04) Before &amp; after</p><h2>{ba['title']}</h2></div><div class="s-ba__tags"><span class="on">Before</span><span>After</span></div></div>
+    <div class="s-ba__bot"><p>{ba['desc']}</p><a class="btn btn--light" href="work.html#before-after">See all {len(pairs)} <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+
+<section class="scene s-why night" aria-label="Our purpose">
+  <div class="scene__stick">
+    <div class="s-why__win">{photo("crew", "The Painting With Purpose crew beside their truck", sizes="40vw")}</div>
+    <div>
+      <p class="label">(05) Purpose</p>
+      <h2>Beyond<br>paint.</h2>
+      <p class="lead">We partner with CVOEO, the Champlain Valley Office of Economic Opportunity. A share of every project goes to their housing work, built into the price and never added on top.</p>
+      <div class="route" aria-hidden="true"><div><small>From</small><b>Your project</b></div><span class="arr">→</span><div><small>To</small><b>A neighbor’s home</b></div><span class="bar"></span></div>
+      <div class="nums"><div><b>$15k+</b><span>given to CVOEO</span></div><div><b>100+</b><span>jobs finished</span></div><div><b>$0</b><span>extra to you</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="revs night" aria-labelledby="revs-h">
+  <div class="wrap"><p class="label">(06) Word of mouth</p><h2 id="revs-h" class="up" style="font-size:clamp(44px,6vw,100px);font-weight:300">The work.<br><span class="mute">In their words.</span></h2></div>
+  <div class="revs__cols wrap">{revcols}</div>
 </section>
 </main>
 """
@@ -423,7 +469,7 @@ def build_about():
     html += header("about")
     html += f"""<main id="main">
 {page_title("(purpose)", "good work should do good", "A Greater Burlington painting company with one big goal: helping end homelessness in Vermont.")}
-<section class="full">{photo("dsc-1247", "The Painting With Purpose tent at a Vermont town event", sizes="100vw")}</section>
+<section class="full archpic">{photo("dsc-1247", "The Painting With Purpose tent at a Vermont town event", sizes="100vw")}</section>
 <section class="split wrap">
   <p class="label">(story)</p>
   <div class="split__txt">
@@ -516,7 +562,7 @@ def build_careers():
     html += header("careers")
     html += f"""<main id="main">
 {page_title("(careers)", "paint with us", "We’re always looking for reliable, careful people who take pride in their work. Experience helps, attitude matters more.")}
-<section class="full">{photo("crew", "The Painting With Purpose crew beside their truck", sizes="100vw")}</section>
+<section class="full archpic">{photo("crew", "The Painting With Purpose crew beside their truck", sizes="100vw")}</section>
 <section class="values wrap" aria-labelledby="why-h">
   <div class="sechead"><p class="label">(why here)</p><h2 id="why-h">a crew, not a job</h2></div>
   <ol class="steplist steplist--3">{pk}</ol>
