@@ -22,6 +22,7 @@
   }
 
   var baTags = document.querySelectorAll(".s-ba__tags span");
+  var storyLayers = Array.prototype.slice.call(document.querySelectorAll(".s-story__layer"));
 
   var hdr = document.querySelector(".hdr");
   var darks = Array.prototype.slice.call(document.querySelectorAll(".night, .s-hero, .s-ba"));
@@ -44,6 +45,12 @@
         var lit = Math.round(Math.min(1, p / .85) * words.length);
         words.forEach(function (w, i) { w.classList.toggle("on", i < lit); });
       }
+      if (s.classList.contains("s-story")) {
+        storyLayers.forEach(function (l, i) {
+          var next = storyLayers[i + 1];
+          l.classList.toggle("on", p >= parseFloat(l.dataset.at) && (!next || p < parseFloat(next.dataset.at)));
+        });
+      }
       if (s.classList.contains("s-ba") && baTags.length) {
         var after = p > .5;
         baTags[0].classList.toggle("on", !after);
@@ -64,6 +71,58 @@
     window.addEventListener("resize", function () { measure(); tick(); });
     window.addEventListener("load", function () { measure(); tick(); });
     measure(); tick();
+  }
+
+  // drone clips: play only what is on screen; sound is off until the visitor asks for it,
+  // then only the clip most in view is heard, faded in and out
+  var clips = Array.prototype.slice.call(document.querySelectorAll("video.clip")).filter(function (v) { return v.querySelector("source"); });
+  var snd = document.querySelector(".snd");
+  var soundOn = false;
+  function shown(v) {
+    var layer = v.closest(".s-story__layer");
+    if (layer && !layer.classList.contains("on")) return 0;
+    var r = v.getBoundingClientRect();
+    var h = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
+    var w = Math.max(0, Math.min(r.right, innerWidth) - Math.max(r.left, 0));
+    return (h * w) / (innerWidth * innerHeight);
+  }
+  function fade(v, to) {
+    cancelAnimationFrame(v._f);
+    (function step() {
+      var d = to - v.volume;
+      if (Math.abs(d) < .04) { v.volume = to; if (!to) v.muted = true; return; }
+      v.volume = Math.max(0, Math.min(1, v.volume + d * .12));
+      v._f = requestAnimationFrame(step);
+    })();
+  }
+  function media() {
+    if (!clips.length) return;
+    var best = null, bestA = .15;
+    clips.forEach(function (v) {
+      var a = shown(v);
+      if (a > 0) { if (v.paused && !reduce) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } }
+      else if (!v.paused) v.pause();
+      if (a > bestA) { bestA = a; best = v; }
+    });
+    clips.forEach(function (v) {
+      if (soundOn && v === best) { if (v.muted) { v.volume = 0; v.muted = false; } fade(v, 1); }
+      else if (!v.muted) fade(v, 0);
+    });
+    if (snd) snd.classList.toggle("away", !clips.some(function (v) { return shown(v) > .15; }));
+  }
+  if (clips.length && snd && !reduce) {
+    snd.hidden = false;
+    snd.addEventListener("click", function () {
+      soundOn = !soundOn;
+      snd.setAttribute("aria-pressed", soundOn);
+      snd.querySelector(".snd__t").textContent = soundOn ? "Sound on" : "Sound off";
+      media();
+    });
+  }
+  if (!reduce) {
+    window.addEventListener("scroll", function () { requestAnimationFrame(media); }, { passive: true });
+    setInterval(media, 600);
+    media();
   }
 
   // reveals

@@ -27,6 +27,15 @@ def photo(name, alt, cls="", sizes="100vw", eager=False):
             f'sizes="{sizes}" alt="{alt}" {load} decoding="async">')
 
 
+
+def clip(name, alt, eager=False):
+    """Looping drone clip. Muted until the visitor turns sound on. The video source is only
+    written once the file exists in assets/video, so the poster still shows until then."""
+    src = ROOT / f"assets/video/{name}.mp4"
+    source = f'<source src="assets/video/{name}.mp4" type="video/mp4">' if src.exists() else ""
+    return (f'<video class="clip" muted loop playsinline preload="{"auto" if eager else "none"}" '
+            f'poster="assets/video/{name}.jpg" aria-label="{alt}">{source}</video>')
+
 def head(title, desc, page):
     return f"""<!doctype html>
 <html lang="en">
@@ -271,31 +280,41 @@ def build_index(pairs):
     html += f"""<main id="main">
 <section class="scene s-hero" aria-label="Introduction">
   <div class="scene__stick">
-    <div class="s-hero__win">
-      <picture>
-        <source media="(max-width: 700px)" srcset="assets/photos/hero-0058-m-sm.jpg 720w, assets/photos/hero-0058-m-lg.jpg 1600w" sizes="100vw">
-        <img src="assets/photos/hero-0058-sm.jpg" srcset="assets/photos/hero-0058-sm.jpg 900w, assets/photos/hero-0058-lg.jpg 2000w" sizes="100vw" alt="{ALT['dsc-0058']}" fetchpriority="high">
-      </picture>
-    </div>
+    <div class="s-hero__win">{clip("sigma", "Sigma Phi House on a fall afternoon, students on the lawn", eager=True)}</div>
     <p class="s-hero__kick label">Painting With Purpose · Burlington, Vermont</p>
     <div class="s-hero__split" aria-hidden="true"><span>Careful</span><span>color.</span></div>
     <div class="s-hero__end">
-      <h1>Good work,<br>for good.</h1>
-      <div>
-        <p>House painters for Vermont’s old homes and new ones. A share of every job goes to ending homelessness in our state.</p>
-        <a class="btn btn--light" href="estimate.html">Free estimate <span aria-hidden="true">→</span></a>
-      </div>
+      <h1 class="sr">Painting With Purpose: house painters in Burlington, Vermont</h1>
+      <p class="beat">Whether it’s a frat house on the hill,</p>
+      <p class="s-hero__cap label">Sigma Phi House · Burlington</p>
     </div>
     <p class="s-hero__scroll">Scroll</p>
   </div>
 </section>
 
-<section class="scene s-read" aria-label="Who we are">
-  <div class="scene__stick wrap">
-    <p class="label">(01) The studio</p>
-    <p class="s-read__txt"><span data-words="">We are a Burlington crew who scrape, prime and paint by hand, then walk every finished job with you.</span> <span data-words="sky">And part of what you pay helps a Vermont neighbor find a home.</span></p>
+<section class="scene s-story night" aria-label="What we paint">
+  <div class="scene__stick">
+    <div class="s-story__layer on" data-at="0">
+      {clip("victorian", "A Queen Anne Victorian on a quiet street, a neighbor walking a dog past")}
+      <div class="s-story__txt"><p class="beat">a Victorian on a quiet street,</p><p class="label">Queen Anne Victorian · Burlington</p></div>
+    </div>
+    <div class="s-story__layer" data-at=".34">
+      {clip("library", "A library atrium with readers, timber ceilings and a black steel stair")}
+      <div class="s-story__txt"><p class="beat">a library in the middle of town,</p><p class="label">Library &amp; community hall · Greater Burlington</p></div>
+    </div>
+    <div class="s-story__layer s-story__end" data-at=".66">
+      <div class="s-story__arch">{clip("porch-tall", "A freshly painted covered porch with a diamond inlay in the floor")}</div>
+      <div class="s-story__final">
+        <p class="beat beat--sm">or the porch you come home to,</p>
+        <h2>we paint with purpose.</h2>
+        <p class="lead">A Burlington crew who scrape, prime and paint by hand, then walk every finished job with you. Part of every job helps a Vermont neighbor find a home.</p>
+        <a class="btn btn--light" href="estimate.html">Free estimate <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
+
+<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">Sound off</span></button>
 
 <section class="scene s-draw" aria-label="From drawing to paint">
   <div class="scene__stick">
