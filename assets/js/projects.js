@@ -1,4 +1,4 @@
-/* Before/after projects (photos from paintingwithpurpose.com). Order = order shown; the homepage shows the first 8. */
+/* Before/after projects (photos from paintingwithpurpose.com). Order = order shown. The first is the homepage feature; the next three are its thumbnails. Run python3 tools/build.py after editing. */
 window.PWP_BEFORE_AFTER = [
   {
     "before": "assets/before-after/exterior-pair02-before.jpg",
