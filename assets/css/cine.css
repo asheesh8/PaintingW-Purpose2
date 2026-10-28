@@ -265,3 +265,9 @@ video.clip { display: block; width: 100%; height: 100%; object-fit: cover; backg
 }
 .s-hero__end .beat { font-size: clamp(40px, 6.4vw, 112px); max-width: 14em; color: #fff; text-shadow: 0 2px 30px rgba(0, 0, 0, .35); }
 .s-story__final h2::first-letter { text-transform: none; }
+/* the Victorian clip has a street sign at its right edge: keep it out of frame */
+.s-story__layer--vic > video { transform-origin: 0% 60%; transform: scale(1.46); }
+.s-story__layer--vic.on > video { transform: scale(1.4); }
+@media (max-aspect-ratio: 1/1) {
+  .s-story__layer--vic > video, .s-story__layer--vic.on > video { transform: none; object-position: 30% 50%; }
+}

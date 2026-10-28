@@ -294,7 +294,7 @@ def build_index(pairs):
 
 <section class="scene s-story night" aria-label="What we paint">
   <div class="scene__stick">
-    <div class="s-story__layer on" data-at="0">
+    <div class="s-story__layer s-story__layer--vic on" data-at="0">
       {clip("victorian", "A Queen Anne Victorian on a quiet street, a neighbor walking a dog past")}
       <div class="s-story__txt"><p class="beat">a Victorian on a quiet street,</p><p class="label">Queen Anne Victorian · Burlington</p></div>
     </div>
