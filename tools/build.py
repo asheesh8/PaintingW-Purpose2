@@ -36,6 +36,11 @@ def clip(name, alt, eager=False):
     return (f'<video class="clip" muted loop playsinline preload="{"auto" if eager else "none"}" '
             f'poster="assets/video/{name}.jpg" aria-label="{alt}">{source}</video>')
 
+
+def vband(name, alt, cap, cls=""):
+    """Full-width drone clip for an inner page."""
+    return f'<figure class="vband archpic {cls}">{clip(name, alt)}<figcaption class="label">{cap}</figcaption></figure>'
+
 def head(title, desc, page):
     return f"""<!doctype html>
 <html lang="en">
@@ -90,6 +95,7 @@ FOOTER = f"""<footer class="ftr">
   </div>
   <p class="ftr__fine"><span>© 2026 Painting With Purpose</span><span>A share of every job goes to CVOEO</span></p>
 </footer>
+<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">Sound off</span></button>
 <script src="assets/js/projects.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/cine.js"></script>
@@ -314,72 +320,6 @@ def build_index(pairs):
   </div>
 </section>
 
-<button class="snd" type="button" aria-pressed="false" hidden><span class="snd__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="snd__t">Sound off</span></button>
-
-<section class="scene s-draw" aria-label="From drawing to paint">
-  <div class="scene__stick">
-    <div class="s-draw__l">
-      <p class="label">(02) The process</p>
-      <h2>Every line.<span class="mute">Every coat.</span></h2>
-      <dl class="spec">
-        <div><dt>Prep</dt><dd>Scraped, sanded, primed</dd></div>
-        <div><dt>Paint</dt><dd>Two finish coats</dd></div>
-        <div><dt>Lead</dt><dd>Certified lead-safe</dd></div>
-        <div><dt>Estimate</dt><dd>Free, written</dd></div>
-      </dl>
-    </div>
-    <div class="s-draw__img">
-      {photo("draw-0179", "Line drawing of the Sigma Phi house")}
-      <div class="s-draw__paint">{photo("dsc-0179", ALT["dsc-0179"])}</div>
-      <span class="s-draw__line" aria-hidden="true"></span>
-    </div>
-    <div class="s-draw__r">
-      <h2>Your home.<span class="mute">Your colors.</span></h2>
-      <p>We help you choose, sample on the wall, and then do the slow part properly, from the first scrape to the final walk-through.</p>
-      <p class="s-draw__step">Sigma Phi House · Burlington</p>
-      <a class="link" href="services.html">How a job runs →</a>
-    </div>
-  </div>
-</section>
-
-<section class="scene s-side night" aria-label="Recent work">
-  <div class="scene__stick">
-    <span class="ghost" aria-hidden="true">Vermont</span>
-    <div class="s-side__head wrap"><div><p class="label">(03) Selected work</p><h2>Recent projects</h2></div><a class="link" href="work.html">All work →</a></div>
-    <div class="s-side__track">{track}</div>
-    <div class="s-side__bar" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="scene s-ba" aria-label="Before and after">
-  <div class="scene__stick">
-    <div class="s-ba__frame">
-      <img src="{ba['before']}" alt="{ba['title']}, before" loading="lazy">
-      <img class="s-ba__after" src="{ba['after']}" alt="{ba['title']}, after" loading="lazy">
-      <span class="s-ba__edge" aria-hidden="true"></span>
-    </div>
-    <div class="s-ba__top"><div><p class="label">(04) Before &amp; after</p><h2>{ba['title']}</h2></div><div class="s-ba__tags"><span class="on">Before</span><span>After</span></div></div>
-    <div class="s-ba__bot"><p>{ba['desc']}</p><a class="btn btn--light" href="work.html#before-after">See all {len(pairs)} <span aria-hidden="true">→</span></a></div>
-  </div>
-</section>
-
-<section class="scene s-why night" aria-label="Our purpose">
-  <div class="scene__stick">
-    <div class="s-why__win">{photo("crew", "The Painting With Purpose crew beside their truck", sizes="40vw")}</div>
-    <div>
-      <p class="label">(05) Purpose</p>
-      <h2>Beyond<br>paint.</h2>
-      <p class="lead">We partner with CVOEO, the Champlain Valley Office of Economic Opportunity. A share of every project goes to their housing work, built into the price and never added on top.</p>
-      <div class="route" aria-hidden="true"><div><small>From</small><b>Your project</b></div><span class="arr">→</span><div><small>To</small><b>A neighbor’s home</b></div><span class="bar"></span></div>
-      <div class="nums"><div><b>$15k+</b><span>given to CVOEO</span></div><div><b>100+</b><span>jobs finished</span></div><div><b>$0</b><span>extra to you</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="revs night" aria-labelledby="revs-h">
-  <div class="wrap"><p class="label">(06) Word of mouth</p><h2 id="revs-h" class="up" style="font-size:clamp(44px,6vw,100px);font-weight:300">The work.<br><span class="mute">In their words.</span></h2></div>
-  <div class="revs__cols wrap">{revcols}</div>
-</section>
 </main>
 """
     html += FOOTER
@@ -406,6 +346,7 @@ def build_work(pairs):
     html += header("work")
     html += f"""<main id="main">
 {page_title("(work)", "the work", "Houses, halls and storefronts around Greater Burlington. Most of these photos were taken by Gabe on the last day of the job.")}
+{vband("sigma", "Sigma Phi House on a fall afternoon, students on the lawn", "Sigma Phi House · Burlington")}
 <nav class="jump wrap" aria-label="Projects">{''.join(f'<a href="#{p["id"]}">{p["title"]}</a>' for p in PROJECTS)}<a href="#before-after">Before &amp; after</a></nav>
 <section class="projects wrap">
 {''.join(projects)}
@@ -452,6 +393,7 @@ def build_services():
     html += header("services")
     html += f"""<main id="main">
 {page_title("(services)", "what we do", "Five services, one standard: careful prep, daily cleanup and painters who check their own work.")}
+{vband("library", "A library atrium with readers, timber ceilings and a black steel stair", "Library &amp; community hall · Greater Burlington")}
 <section class="srvs wrap">
 {''.join(rows)}
 </section>
@@ -488,7 +430,7 @@ def build_about():
     html += header("about")
     html += f"""<main id="main">
 {page_title("(purpose)", "good work should do good", "A Greater Burlington painting company with one big goal: helping end homelessness in Vermont.")}
-<section class="full archpic">{photo("dsc-1247", "The Painting With Purpose tent at a Vermont town event", sizes="100vw")}</section>
+{vband("victorian", "A Queen Anne Victorian on a quiet street, a neighbor walking a dog past", "Queen Anne Victorian · Burlington", "vband--vic")}
 <section class="split wrap">
   <p class="label">(story)</p>
   <div class="split__txt">
